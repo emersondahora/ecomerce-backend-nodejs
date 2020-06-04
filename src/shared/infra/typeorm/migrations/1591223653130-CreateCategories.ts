@@ -28,11 +28,6 @@ export default class CreateCategories1591223653130
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'avatar',
-            type: 'varchar',
-            isNullable: true,
-          },
         ],
       }),
     );
