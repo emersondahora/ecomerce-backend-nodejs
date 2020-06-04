@@ -18,6 +18,14 @@ export default class CreateProducts1591223748904 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'description',
+            type: 'varchar',
+          },
+          {
+            name: 'price',
+            type: 'numeric(10,2)',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
@@ -26,11 +34,6 @@ export default class CreateProducts1591223748904 implements MigrationInterface {
             name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
-          },
-          {
-            name: 'avatar',
-            type: 'varchar',
-            isNullable: true,
           },
         ],
       }),

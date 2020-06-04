@@ -17,7 +17,7 @@ export default async function ensureAuthenticated(
 
   const decodeTokenService = container.resolve(DecodeTokenService);
   const payload = await decodeTokenService.execute(token);
-  console.log(payload);
+
   request.user = {
     id: payload.user_id,
     is_admin: payload.is_admin,
