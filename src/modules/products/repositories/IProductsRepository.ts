@@ -1,8 +1,10 @@
 import Product from '../infra/typeorm/entities/Product';
-import ICreateProductDTO from '../dtos/ICreateProductDTO';
+import ICreateUpdateProductDTO from '../dtos/ICreateUpdateProductDTO';
 
 export default interface IProductsRepository {
+  findById(id: string): Promise<Product | undefined>;
   findByName(name: string): Promise<Product | undefined>;
-  create(data: ICreateProductDTO): Promise<Product>;
+  create(data: Omit<ICreateUpdateProductDTO, 'id'>): Promise<Product>;
+  save(data: Product): Promise<Product>;
   listAll(): Promise<Product[]>;
 }

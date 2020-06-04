@@ -14,21 +14,24 @@ export default class CreateProductService {
   ) {}
 
   public async execute({
+    id,
     name,
     description,
     price,
-  }: Omit<ICreateUpdateProductDTO, 'id'>): Promise<Product> {
+  }: ICreateUpdateProductDTO): Promise<Product> {
     const existsProduct = await this.productsRepository.findByName(name);
-    if (existsProduct) {
+    if (existsProduct && existsProduct.id !== id) {
       throw new AppError('Already have a product with this name');
     }
 
-    const product = await this.productsRepository.create({
-      name,
-      description,
-      price,
-    });
+    const product = await this.productsRepository.findById(id);
+    if (!product) {
+      throw new AppError('Produto não encontrado');
+    }
+    Object.assign(product, { name, description, price });
 
-    return product;
+    const updatedProduct = this.productsRepository.save(product);
+
+    return updatedProduct;
   }
 }
