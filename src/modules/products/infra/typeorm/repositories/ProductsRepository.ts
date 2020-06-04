@@ -11,6 +11,11 @@ export default class ProductsRepository implements IProductsRepository {
     this.ormRepository = getRepository(Product);
   }
 
+  public async findById(id: string): Promise<Product | undefined> {
+    const product = this.ormRepository.findOne(id);
+    return product;
+  }
+
   public async findByName(name: string): Promise<Product | undefined> {
     const product = this.ormRepository.findOne({ where: { name } });
     return product;
@@ -32,21 +37,8 @@ export default class ProductsRepository implements IProductsRepository {
     return product;
   }
 
-  public async save({
-    id,
-    name,
-    description,
-    price,
-  }: ICreateUpdateProductDTO): Promise<Product> {
-    const product = this.ormRepository.create({
-      name,
-      description,
-      price,
-    });
-
-    await this.ormRepository.save(product);
-
-    return product;
+  public async save(product: Product): Promise<Product> {
+    return this.ormRepository.save(product);
   }
 
   public async listAll(): Promise<Product[]> {

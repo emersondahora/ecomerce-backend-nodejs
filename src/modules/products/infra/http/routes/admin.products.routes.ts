@@ -19,4 +19,19 @@ adminProductsRoutes.post(
   adminProductsController.create,
 );
 
+adminProductsRoutes.put(
+  '/:product_id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      description: Joi.string().required(),
+      price: Joi.number().required(),
+    },
+    [Segments.PARAMS]: {
+      product_id: Joi.string().uuid().required(),
+    },
+  }),
+  adminProductsController.update,
+);
+
 export default adminProductsRoutes;
