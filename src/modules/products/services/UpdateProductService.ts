@@ -7,7 +7,7 @@ import ICreateUpdateProductDTO from '../dtos/ICreateUpdateProductDTO';
 import Product from '../infra/typeorm/entities/Product';
 
 @injectable()
-export default class CreateProductService {
+export default class UpdateProductService {
   constructor(
     @inject('ProductsRepository')
     private productsRepository: IProductsRepository,

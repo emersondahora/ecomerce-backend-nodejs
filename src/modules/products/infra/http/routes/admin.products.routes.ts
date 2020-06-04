@@ -19,6 +19,15 @@ adminProductsRoutes.post(
   adminProductsController.create,
 );
 
+adminProductsRoutes.get(
+  '/:product_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      product_id: Joi.string().uuid().required(),
+    },
+  }),
+  adminProductsController.show,
+);
 adminProductsRoutes.put(
   '/:product_id',
   celebrate({

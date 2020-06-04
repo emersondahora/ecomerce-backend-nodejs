@@ -5,6 +5,7 @@ import { classToClass } from 'class-transformer';
 import CreateProductService from '@modules/products/services/CreateProductService';
 import ListProductsService from '@modules/products/services/ListProductsService';
 import UpdateProductService from '@modules/products/services/UpdateProductService';
+import ShowProductService from '@modules/products/services/ShowProductService';
 
 export default class AdminProductsControler {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -31,6 +32,13 @@ export default class AdminProductsControler {
     const { name, description, price } = request.body;
     const createProduct = container.resolve(CreateProductService);
     const product = await createProduct.execute({ name, description, price });
+    return response.status(201).json(classToClass(product));
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { product_id: id } = request.params;
+    const showProduct = container.resolve(ShowProductService);
+    const product = await showProduct.execute(id);
     return response.status(201).json(classToClass(product));
   }
 }
