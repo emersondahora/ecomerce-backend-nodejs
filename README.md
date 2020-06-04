@@ -1,4 +1,4 @@
-# Ecomerce BackEnd - versão NodeJS
+# Ecommerce BackEnd - versão NodeJS
 
 Backend em NodeJS/Rest de uma loja virtual, criado com base em um projeto realizado no curso "Curso Completo de PHP 7" da HCODER
 e com o intuito de colocar em prática tecnologias, patterns e boas práticas de mercado.
