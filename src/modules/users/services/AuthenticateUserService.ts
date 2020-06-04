@@ -37,7 +37,6 @@ export default class AuthenticateUserService {
     if (!user) {
       throw new AppError('User/Password not found');
     }
-    console.log(password, user.password);
     const verifyPassword = await this.hashProvider.compareHash(
       password,
       user.password,
