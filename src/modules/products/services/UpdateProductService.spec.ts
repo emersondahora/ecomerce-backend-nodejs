@@ -53,4 +53,15 @@ describe('UpdateProduct', () => {
       updateProductService.execute(updateProductData),
     ).rejects.toBeInstanceOf(AppError);
   });
+  it('should not be able to update a non existing product', async () => {
+    const updateProductData = {
+      id: 'non existing product',
+      name: 'product updated',
+      description: 'description updated',
+      price: 500,
+    };
+    await expect(
+      updateProductService.execute(updateProductData),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
