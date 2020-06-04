@@ -31,4 +31,10 @@ export default class ProductsRepository implements IProductsRepository {
 
     return product;
   }
+
+  public async listAll(): Promise<Product[]> {
+    const products = await this.ormRepository.find();
+
+    return products;
+  }
 }

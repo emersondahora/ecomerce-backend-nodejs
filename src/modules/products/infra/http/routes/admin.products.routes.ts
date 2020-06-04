@@ -6,6 +6,7 @@ import AdminProductsController from '../controllers/AdminProductsController';
 const adminProductsRoutes = Router();
 const adminProductsController = new AdminProductsController();
 
+adminProductsRoutes.get('/', adminProductsController.index);
 adminProductsRoutes.post(
   '/',
   celebrate({

@@ -20,4 +20,8 @@ export default class FakeProductsRepository implements IProductsRepository {
 
     return product;
   }
+
+  public async listAll(): Promise<Product[]> {
+    return this.products;
+  }
 }
