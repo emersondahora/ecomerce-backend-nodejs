@@ -7,4 +7,5 @@ export default interface IProductsRepository {
   create(data: Omit<ICreateUpdateProductDTO, 'id'>): Promise<Product>;
   save(data: Product): Promise<Product>;
   listAll(): Promise<Product[]>;
+  delete(id: string): Promise<void>;
 }

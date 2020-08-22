@@ -20,7 +20,7 @@ export default class CreateProductService {
   }: Omit<ICreateUpdateProductDTO, 'id'>): Promise<Product> {
     const existsProduct = await this.productsRepository.findByName(name);
     if (existsProduct) {
-      throw new AppError('Already have a product with this name');
+      throw new AppError('Já existe um produto com esse nome');
     }
 
     const product = await this.productsRepository.create({

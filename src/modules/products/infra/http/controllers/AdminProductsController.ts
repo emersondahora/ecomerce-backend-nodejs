@@ -6,6 +6,7 @@ import CreateProductService from '@modules/products/services/CreateProductServic
 import ListProductsService from '@modules/products/services/ListProductsService';
 import UpdateProductService from '@modules/products/services/UpdateProductService';
 import ShowProductService from '@modules/products/services/ShowProductService';
+import DeleteProductService from '@modules/products/services/DeleteProductService';
 
 export default class AdminProductsControler {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -40,5 +41,12 @@ export default class AdminProductsControler {
     const showProduct = container.resolve(ShowProductService);
     const product = await showProduct.execute(id);
     return response.status(201).json(classToClass(product));
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { product_id: id } = request.params;
+    const deleteProduct = container.resolve(DeleteProductService);
+    await deleteProduct.execute(id);
+    return response.status(200).send();
   }
 }

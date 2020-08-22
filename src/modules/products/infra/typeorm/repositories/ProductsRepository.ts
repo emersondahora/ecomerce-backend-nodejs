@@ -1,8 +1,8 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Not } from 'typeorm';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
 import ICreateUpdateProductDTO from '@modules/products/dtos/ICreateUpdateProductDTO';
-import Product from '../entities/Product';
+import Product, { products_status } from '../entities/Product';
 
 export default class ProductsRepository implements IProductsRepository {
   private ormRepository: Repository<Product>;
@@ -12,12 +12,16 @@ export default class ProductsRepository implements IProductsRepository {
   }
 
   public async findById(id: string): Promise<Product | undefined> {
-    const product = this.ormRepository.findOne(id);
+    const product = this.ormRepository.findOne(id, {
+      where: { status: Not(products_status.deleted) },
+    });
     return product;
   }
 
   public async findByName(name: string): Promise<Product | undefined> {
-    const product = this.ormRepository.findOne({ where: { name } });
+    const product = this.ormRepository.findOne({
+      where: { name, status: Not(products_status.deleted) },
+    });
     return product;
   }
 
@@ -42,8 +46,18 @@ export default class ProductsRepository implements IProductsRepository {
   }
 
   public async listAll(): Promise<Product[]> {
-    const products = await this.ormRepository.find();
+    const products = await this.ormRepository.find({
+      where: { status: Not(products_status.deleted) },
+    });
 
     return products;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const product = await this.findById(id);
+    if (product) {
+      product.status = products_status.deleted;
+      this.save(product);
+    }
   }
 }

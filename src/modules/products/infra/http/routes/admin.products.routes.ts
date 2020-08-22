@@ -43,4 +43,13 @@ adminProductsRoutes.put(
   adminProductsController.update,
 );
 
+adminProductsRoutes.delete(
+  '/:product_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      product_id: Joi.string().uuid().required(),
+    },
+  }),
+  adminProductsController.delete,
+);
 export default adminProductsRoutes;
