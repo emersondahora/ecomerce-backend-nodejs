@@ -1,7 +1,7 @@
 import AppError from '@shared/errors/AppError';
 import UpdateProductService from './UpdateProductService';
-import FakeProductsRepository from '../repositories/fakes/FakeProductsRepository';
-import { products_status } from '../infra/typeorm/entities/Product';
+import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
+import { products_status } from '../../infra/typeorm/entities/Product';
 
 let updateProductService: UpdateProductService;
 let fakeProductsRepository: FakeProductsRepository;

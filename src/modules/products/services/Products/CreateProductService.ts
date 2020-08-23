@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IProductsRepository from '../repositories/IProductsRepository';
-import ICreateUpdateProductDTO from '../dtos/ICreateUpdateProductDTO';
-import Product from '../infra/typeorm/entities/Product';
+import IProductsRepository from '../../repositories/IProductsRepository';
+import ICreateUpdateProductDTO from '../../dtos/ICreateUpdateProductDTO';
+import Product from '../../infra/typeorm/entities/Product';
 
 @injectable()
 export default class CreateProductService {

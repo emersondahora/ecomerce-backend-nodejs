@@ -1,6 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import CreateProductService from './CreateProductService';
-import FakeProductsRepository from '../repositories/fakes/FakeProductsRepository';
+import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
 
 let createProductService: CreateProductService;
 let fakeProductsRepository: FakeProductsRepository;

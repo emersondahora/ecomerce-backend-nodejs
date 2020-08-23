@@ -1,6 +1,6 @@
 import AppError from '@shared/errors/AppError';
 import DeleteProductService from './DeleteProductService';
-import FakeProductsRepository from '../repositories/fakes/FakeProductsRepository';
+import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
 
 let deleteProductService: DeleteProductService;
 let fakeProductsRepository: FakeProductsRepository;

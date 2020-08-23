@@ -2,11 +2,11 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { classToClass } from 'class-transformer';
 
-import CreateProductService from '@modules/products/services/CreateProductService';
-import ListProductsService from '@modules/products/services/ListProductsService';
-import UpdateProductService from '@modules/products/services/UpdateProductService';
-import ShowProductService from '@modules/products/services/ShowProductService';
-import DeleteProductService from '@modules/products/services/DeleteProductService';
+import CreateProductService from '@modules/products/services/Products/CreateProductService';
+import ListProductsService from '@modules/products/services/Products/ListProductsService';
+import UpdateProductService from '@modules/products/services/Products/UpdateProductService';
+import ShowProductService from '@modules/products/services/Products/ShowProductService';
+import DeleteProductService from '@modules/products/services/Products/DeleteProductService';
 
 export default class AdminProductsControler {
   public async index(request: Request, response: Response): Promise<Response> {

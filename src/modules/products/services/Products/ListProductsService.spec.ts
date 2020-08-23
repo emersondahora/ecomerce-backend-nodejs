@@ -1,5 +1,5 @@
 import ListProductsService from './ListProductsService';
-import FakeProductsRepository from '../repositories/fakes/FakeProductsRepository';
+import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
 
 let listProductsService: ListProductsService;
 let fakeProductsRepository: FakeProductsRepository;
