@@ -1,4 +1,5 @@
 import AppError from '@shared/errors/AppError';
+import Product from '@modules/products/infra/typeorm/entities/Product';
 import ShowProductService from './ShowProductService';
 import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
 
@@ -11,11 +12,11 @@ describe('ShowProduct', () => {
     showProductService = new ShowProductService(fakeProductsRepository);
   });
   it('should be able show an especific product', async () => {
-    const productData = {
+    const productData = Object.assign(new Product(), {
       name: 'product',
       description: 'description',
       price: 250,
-    };
+    });
     const newProduct = await fakeProductsRepository.create(productData);
 
     const product = await showProductService.execute(newProduct.id);

@@ -17,7 +17,7 @@ export default class AdminProductsControler {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { name, description, price } = request.body;
+    const { name, description, price, categories_id } = request.body;
     const { product_id: id } = request.params;
     const updateProduct = container.resolve(UpdateProductService);
     const product = await updateProduct.execute({
@@ -25,14 +25,20 @@ export default class AdminProductsControler {
       name,
       description,
       price,
+      categories_id,
     });
     return response.status(201).json(classToClass(product));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, description, price } = request.body;
+    const { name, description, price, categories_id } = request.body;
     const createProduct = container.resolve(CreateProductService);
-    const product = await createProduct.execute({ name, description, price });
+    const product = await createProduct.execute({
+      name,
+      description,
+      price,
+      categories_id,
+    });
     return response.status(201).json(classToClass(product));
   }
 

@@ -3,4 +3,5 @@ export default interface ICreateUpdateProductDTO {
   name: string;
   description: string;
   price: number;
+  categories_id?: string[];
 }

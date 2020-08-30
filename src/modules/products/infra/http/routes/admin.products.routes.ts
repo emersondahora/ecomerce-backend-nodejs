@@ -14,6 +14,7 @@ adminProductsRoutes.post(
       name: Joi.string().required(),
       description: Joi.string().required(),
       price: Joi.number().required(),
+      categories_id: Joi.array().items(Joi.string()),
     },
   }),
   adminProductsController.create,
@@ -35,6 +36,7 @@ adminProductsRoutes.put(
       name: Joi.string().required(),
       description: Joi.string().required(),
       price: Joi.number().required(),
+      categories_id: Joi.array().items(Joi.string()),
     },
     [Segments.PARAMS]: {
       product_id: Joi.string().uuid().required(),

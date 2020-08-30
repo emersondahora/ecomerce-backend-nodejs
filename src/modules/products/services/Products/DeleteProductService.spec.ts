@@ -1,15 +1,16 @@
 import AppError from '@shared/errors/AppError';
+import Product from '@modules/products/infra/typeorm/entities/Product';
 import DeleteProductService from './DeleteProductService';
 import FakeProductsRepository from '../../repositories/fakes/FakeProductsRepository';
 
 let deleteProductService: DeleteProductService;
 let fakeProductsRepository: FakeProductsRepository;
 
-const productData = {
+const productData = Object.assign(new Product(), {
   name: 'product',
   description: 'description',
   price: 250,
-};
+});
 
 describe('ShowProduct', () => {
   beforeEach(async () => {

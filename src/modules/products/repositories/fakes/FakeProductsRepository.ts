@@ -2,7 +2,6 @@ import { uuid } from 'uuidv4';
 
 import IProductsRepository from '../IProductsRepository';
 import Product, { products_status } from '../../infra/typeorm/entities/Product';
-import ICreateUpdateProductDTO from '../../dtos/ICreateUpdateProductDTO';
 
 export default class FakeProductsRepository implements IProductsRepository {
   private products: Product[] = [];
@@ -23,9 +22,7 @@ export default class FakeProductsRepository implements IProductsRepository {
     return product;
   }
 
-  public async create(
-    data: Omit<ICreateUpdateProductDTO, 'id'>,
-  ): Promise<Product> {
+  public async create(data: Omit<Product, 'id'>): Promise<Product> {
     const product = new Product();
 
     Object.assign(

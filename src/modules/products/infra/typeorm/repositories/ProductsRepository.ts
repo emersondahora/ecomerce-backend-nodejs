@@ -1,7 +1,6 @@
 import { getRepository, Repository, Not } from 'typeorm';
 
 import IProductsRepository from '@modules/products/repositories/IProductsRepository';
-import ICreateUpdateProductDTO from '@modules/products/dtos/ICreateUpdateProductDTO';
 import Product, { products_status } from '../entities/Product';
 
 export default class ProductsRepository implements IProductsRepository {
@@ -14,6 +13,7 @@ export default class ProductsRepository implements IProductsRepository {
   public async findById(id: string): Promise<Product | undefined> {
     const product = this.ormRepository.findOne(id, {
       where: { status: Not(products_status.deleted) },
+      relations: ['categories'],
     });
     return product;
   }
@@ -29,11 +29,13 @@ export default class ProductsRepository implements IProductsRepository {
     name,
     description,
     price,
-  }: Omit<ICreateUpdateProductDTO, 'id'>): Promise<Product> {
+    categories,
+  }: Omit<Product, 'id'>): Promise<Product> {
     const product = this.ormRepository.create({
       name,
       description,
       price,
+      categories,
     });
 
     await this.ormRepository.save(product);
@@ -48,6 +50,7 @@ export default class ProductsRepository implements IProductsRepository {
   public async listAll(): Promise<Product[]> {
     const products = await this.ormRepository.find({
       where: { status: Not(products_status.deleted) },
+      relations: ['categories'],
     });
 
     return products;

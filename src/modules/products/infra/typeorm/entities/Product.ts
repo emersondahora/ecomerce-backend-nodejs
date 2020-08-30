@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
+import Category from './Category';
 
 export enum products_status {
   active = 'active',
@@ -27,6 +30,14 @@ class Product {
 
   @Column('enum', { enum: products_status })
   status: products_status;
+
+  @ManyToMany(_ => Category)
+  @JoinTable({
+    name: 'products_categories',
+    joinColumn: { name: 'product_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'category_id', referencedColumnName: 'id' },
+  })
+  categories: Category[];
 
   @CreateDateColumn()
   created_at: Date;
